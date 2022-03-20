@@ -1,9 +1,5 @@
-package liga.medical.devicecore.config;
+package liga.medical.core.configuration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -12,32 +8,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitConfiguration {
+public class RabbitMqConfig {
 
-    Logger logger = LoggerFactory.getLogger(RabbitConfiguration.class);
-
-    //Создаем соединение с именем localhost
     @Bean
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory("localhost");
     }
 
-    //Модуль управления
     @Bean
-    public AmqpAdmin amqpAdmin() {
+    public RabbitAdmin ampqAdmin() {
         return new RabbitAdmin(connectionFactory());
     }
 
-    //Шаблон
     @Bean
     public RabbitTemplate rabbitTemplate() {
         return new RabbitTemplate(connectionFactory());
-    }
-
-    //Очередь с названием
-    @Bean
-    public Queue medical() {
-        return new Queue("medical");
     }
 
 }
