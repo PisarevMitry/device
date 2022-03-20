@@ -33,3 +33,4 @@ build/
 .vscode/
 /.idea/
 /core/target/
+/core/.mvn/
