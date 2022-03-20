@@ -31,7 +31,7 @@ public class DeviceMessageController {
     @PostMapping("/send")
     public ResponseEntity<DeviceIdentificationDto> send(@RequestBody DeviceIdentificationDto dto) {
         logger.info("Sending to medical");
-        template.convertAndSend("medical", dto);
+        template.convertAndSend("medical", dto.toString());
 
         try {
             InetAddress address;
